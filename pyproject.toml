@@ -1,0 +1,40 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "pymonalisa"
+version = "0.1.2"
+description = "pymonalisa - A Python library to decrypt IQIYI DRM License Ticket"
+license = "CC BY-NC-ND 4.0"
+authors = ["ReiDoBrega", "duck", "xhlove"]
+readme = "README.md"
+repository = "https://github.com/ReiDoBrega/pymonalisa"
+keywords = ["python", "drm", "monalisa", "iqcom", "iqiyi", "wasm"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Intended Audience :: End Users/Desktop",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Topic :: Multimedia :: Video",
+  "Topic :: Security :: Cryptography",
+  "Topic :: Software Development :: Libraries :: Python Modules"
+]
+include = [
+  { path = "README.md", format = "sdist" },
+  { path = "LICENSE", format = "sdist" },
+]
+
+[tool.poetry.urls]
+"Issues" = "https://github.com/pymonalisa/pymonalisa/issues"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+click = "^8.1.7"
+cloup = "^3.0.7"
+loggpy = "^0.1.0"
+wasmtime = "^36.0.0"
+
+[tool.poetry.scripts]
+pymonalisa = "pymonalisa.main:main"
