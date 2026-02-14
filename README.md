@@ -73,7 +73,7 @@ cdm.close(session_id)
 - Add support for LicenseVersion up to 3
 
 ## Credits
-Thanks to xhlove and duck.
+Thanks to duck.
 
 ## License
 This project is intended for educational and research purposes only.
