@@ -53,7 +53,7 @@ from pymonalisa.exceptions import (
             Made for fun only by ReiDoBrega.
 
             \b
-             Thanks to xhlove and duck
+             Thanks to duck
             """,
         fg='blue', 
         bold=True,
