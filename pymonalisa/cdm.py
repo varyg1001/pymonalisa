@@ -358,51 +358,51 @@ class Session:
         """Build import object with required external functions"""
 
         # System call stubs
-        def sys_fcntl64(param_0: int, param_1: int, param_2: int) -> int:
+        def sys_fcntl64(*_, **__) -> int:
             return 0
 
-        def fd_write(param_0: int, param_1: int, param_2: int, param_3: int) -> int:
+        def fd_write(*_, **__) -> int:
             return 0
 
-        def fd_close(param_0: int) -> int:
+        def fd_close(*_, **__) -> int:
             return 0
 
-        def sys_ioctl(param_0: int, param_1: int, param_2: int) -> int:
+        def sys_ioctl(*_, **__) -> int:
             return 0
 
-        def sys_open(param_0: int, param_1: int, param_2: int) -> int:
+        def sys_open(*_, **__) -> int:
             return 0
 
-        def sys_rmdir(param_0: int) -> int:
+        def sys_rmdir(*_, **__) -> int:
             return 0
 
-        def sys_unlink(param_0: int) -> int:
+        def sys_unlink(*_, **__) -> int:
             return 0
 
         def clock() -> int:
             return 0
 
-        def time(param_0: int) -> int:
+        def time(*_, **__) -> int:
             return 0
 
-        def emscripten_run_script(param_0: int):
+        def emscripten_run_script(*_, **__):
             pass
 
         def fd_seek(
-            param_0: int, param_1: int, param_2: int, param_3: int, param_4: int
+            *_, **__
         ) -> int:
             return 0
 
-        def emscripten_resize_heap(param_0: int) -> int:
+        def emscripten_resize_heap(*_, **__) -> int:
             return 0
 
-        def fd_read(param_0: int, param_1: int, param_2: int, param_3: int) -> int:
+        def fd_read(*_, **__) -> int:
             return 0
 
-        def emscripten_run_script_string(param_0: int) -> int:
+        def emscripten_run_script_string(*_, **__) -> int:
             return 0
 
-        def emscripten_run_script_int(param_0: int) -> int:
+        def emscripten_run_script_int(*_, **__) -> int:
             return 1
 
         def emscripten_memcpy_big(dest: int, src: int, num: int) -> int:
