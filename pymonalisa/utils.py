@@ -1,14 +1,12 @@
-from typing import List
-
-def get_env_strings() -> List[str]:
+def get_env_strings() -> list[str]:
     return [
-        'USER=web_user',
-        'LOGNAME=web_user', 
-        'PATH=/',
-        'PWD=/',
-        'HOME=/home/web_user',
-        'LANG=zh_CN.UTF-8',
-        '_=./this.program'
+        "USER=web_user",
+        "LOGNAME=web_user",
+        "PATH=/",
+        "PWD=/",
+        "HOME=/home/web_user",
+        "LANG=zh_CN.UTF-8",
+        "_=./this.program",
     ]
 
 

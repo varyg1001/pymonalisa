@@ -2,24 +2,24 @@ __version__ = "0.1.2"
 __authors__ = ["ReiDoBrega", "duck", "xhlove"]
 
 from .cdm import Cdm
-from .module import Module
-from .license import License
 from .exceptions import (
     MonalisaError,
     MonalisaLicenseError,
     MonalisaModuleError,
-    MonalisaSessionError
+    MonalisaSessionError,
 )
-from .types import KeyType, Key
+from .license import License
+from .module import Module
+from .types import Key, KeyType
 
 __all__ = [
     "Cdm",
-    "Module", 
+    "Module",
     "License",
     "Key",
     "KeyType",
     "MonalisaError",
-    "MonalisaLicenseError", 
+    "MonalisaLicenseError",
     "MonalisaModuleError",
-    "MonalisaSessionError"
+    "MonalisaSessionError",
 ]
