@@ -1,7 +1,7 @@
 __version__ = "0.1.2"
 __authors__ = ["ReiDoBrega", "duck", "xhlove"]
 
-from .cdm import Cdm
+from .cdm import CDM
 from .exceptions import (
     MonalisaError,
     MonalisaLicenseError,
