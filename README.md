@@ -9,12 +9,12 @@ pip install pymonalisa
 Run `pymonalisa --help` to view available CLI functions.
 
 ## Devices
-To use pymonalisa, you need a MonaLisa device file (.mld). These device files load the WASM module required to process IQIYI DRM License Tickets correctly.
+To use pymonalisa, you need a MonaLisa device file (.json). These device files load the WASM module required to process IQIYI DRM License Tickets correctly.
 
 ## License Processing
 Process a MonaLisa encoded license and extract decryption keys:
 ```shell
-pymonalisa license "AAAADgMwAADECisAAAdoS7HZAQEASDVEQ0lELVYzLVAxLTIwMjUwNTE5LTE0NDM1Mi1NRDc0N0RBNS0xNzQ0NjQ0OTk3LUExMTJERwEQcMHbn2aue/wLGYFpS2aNngMCADhAACCzbv21P1LuugXC34EhhYOfBQm1K7vNBcxClOM9nTS50AIQxPPew5UYQhKhOg3UrJqXLQQBAwMDADkBADCvjimPScsXNIyb9HxbzkHRB7Bhv3J8Pvpgm54TFhIKSwH32SedaLf7dJ6PRExsjyoBAQECASADBAA4QAAgIreHYYp2nI86fJDaAxR6CJyvM1h+OKXATIn9aj43O2ADEIDB259mrnv8CxmBaUtmjZ4EAQMEBQATARBwwdufZq57/AsZgWlLZo2eAP8GADQBEIDB259mrnv8CxmBaUtmjZ4AIM11WGlDSqV01Aw8PkaTUEgYPVduGGQpxMTnWbNx7qpP" device.mld
+pymonalisa license "AAAADgMwAADECisAAAdoS7HZAQEASDVEQ0lELVYzLVAxLTIwMjUwNTE5LTE0NDM1Mi1NRDc0N0RBNS0xNzQ0NjQ0OTk3LUExMTJERwEQcMHbn2aue/wLGYFpS2aNngMCADhAACCzbv21P1LuugXC34EhhYOfBQm1K7vNBcxClOM9nTS50AIQxPPew5UYQhKhOg3UrJqXLQQBAwMDADkBADCvjimPScsXNIyb9HxbzkHRB7Bhv3J8Pvpgm54TFhIKSwH32SedaLf7dJ6PRExsjyoBAQECASADBAA4QAAgIreHYYp2nI86fJDaAxR6CJyvM1h+OKXATIn9aj43O2ADEIDB259mrnv8CxmBaUtmjZ4EAQMEBQATARBwwdufZq57/AsZgWlLZo2eAP8GADQBEIDB259mrnv8CxmBaUtmjZ4AIM11WGlDSqV01Aw8PkaTUEgYPVduGGQpxMTnWbNx7qpP" ml.json
 ```
 
 ### Options
@@ -25,16 +25,16 @@ pymonalisa license "AAAADgMwAADECisAAAdoS7HZAQEASDVEQ0lELVYzLVAxLTIwMjUwNTE5LTE0
 An example code snippet:
 
 ```python
-from pymonalisa.cdm import Cdm
+from pymonalisa.cdm import CDM
 from pymonalisa.module import Module
 from pymonalisa.license import License
 from pymonalisa.types import KeyType
 
 # Load the MonaLisa device module
-module = Module.load("path/to/device.mld")
+module = Module.load("path/to/device.json")
 
 # Initialize CDM from module
-cdm = Cdm.from_module(module)
+cdm = CDM.from_module(module)
 
 # Open a new session
 session_id = cdm.open()

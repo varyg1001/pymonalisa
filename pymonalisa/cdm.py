@@ -266,7 +266,6 @@ class Session:
         if stack != 0:
             self.exports["stackRestore"](self.store, stack)
 
-        # Convert return value
         if isinstance(return_type, str):
             return self._utf8_to_string(result)
         elif isinstance(return_type, bool):
@@ -388,9 +387,7 @@ class Session:
         def emscripten_run_script(*_, **__):
             pass
 
-        def fd_seek(
-            *_, **__
-        ) -> int:
+        def fd_seek(*_, **__) -> int:
             return 0
 
         def emscripten_resize_heap(*_, **__) -> int:

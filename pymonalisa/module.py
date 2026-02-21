@@ -30,10 +30,8 @@ class Module:
             raise MonalisaModuleError(f"WASM file not found: {self.wasm_path}")
 
         try:
-            # Initialize engine
             self._engine = wasmtime.Engine()
 
-            # Load WASM file
             if self.wasm_path.suffix.lower() == ".wat":
                 self._module = wasmtime.Module.from_file(
                     self._engine, str(self.wasm_path)
@@ -48,10 +46,10 @@ class Module:
     @classmethod
     def load(cls, module_path: str | Path) -> "Module":
         """
-        Load module from .mld (MonaLisa Device) file
+        Load module from .json file
 
         Args:
-            module_path: Path to .mld file containing module info
+            module_path: Path to .json file containing module info
 
         Returns:
             Module: Loaded module instance
@@ -69,7 +67,6 @@ class Module:
             if not wasm_path:
                 raise MonalisaModuleError("Device file missing wasm_path")
 
-            # Resolve relative path
             if not Path(wasm_path).is_absolute():
                 wasm_path = module_path.parent / wasm_path
 
@@ -83,7 +80,7 @@ class Module:
 
     def save(self, module_path: str | Path):
         """
-        Save module to .mld file
+        Save module to .json file
 
         Args:
             module_path: Path where to save the device file

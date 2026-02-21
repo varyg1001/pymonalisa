@@ -6,7 +6,7 @@ import click
 import cloup
 
 from pymonalisa import __version__
-from pymonalisa.cdm import Cdm
+from pymonalisa.cdm import CDM
 from pymonalisa.exceptions import (
     MonalisaError,
     MonalisaLicenseError,
@@ -109,10 +109,10 @@ def license_(
     Process a MonaLisa encoded license and extract decryption keys.
 
     LICENSE_DATA: Base64 encoded MonaLisa license string
-    DEVICE_PATH: Path to MonaLisa device file (.mld)
+    DEVICE_PATH: Path to MonaLisa device file (.json)
 
     Example:
-        pymonalisa license "AIUACgMAAAAAAAAAAAQChgACATADhwAnAgAg3UBbUdVCWXAjkgoUgmICmHvomvZai0jGglWe+oaQC+M..." device.mld
+        pymonalisa license "AIUACgMAAAAAAAAAAAQChgACATADhwAnAgAg3UBbUdVCWXAjkgoUgmICmHvomvZai0jGglWe+oaQC+M..." device.json
     """
     log = logging.getLogger("license")
 
@@ -127,7 +127,7 @@ def license_(
         log.info("Loaded module successfully")
 
         log.info("Initializing CDM...")
-        cdm = Cdm.from_module(module)
+        cdm = CDM.from_module(module)
         log.info("CDM initialized successfully")
 
         log.info("Opening CDM session...")
