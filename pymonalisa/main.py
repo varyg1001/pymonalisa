@@ -1,6 +1,5 @@
 import logging
 from datetime import datetime
-from pathlib import Path
 
 import click
 import cloup
@@ -10,11 +9,9 @@ from pymonalisa.cdm import CDM
 from pymonalisa.exceptions import (
     MonalisaError,
     MonalisaLicenseError,
-    MonalisaModuleError,
     MonalisaSessionError,
 )
 from pymonalisa.license import License
-from pymonalisa.module import Module
 from pymonalisa.types import KeyType
 
 
@@ -69,8 +66,10 @@ from pymonalisa.types import KeyType
 def main(version: bool) -> None:
     """Python MonaLisa CDM implementation"""
 
-    logging.Logger.mount(level=logging.INFO)
-    log = logging.Logger("pymonalisa")
+    logging.Logger.mount(level=logging.INFO) if hasattr(
+        logging.Logger, "mount"
+    ) else logging.basicConfig(level=logging.INFO)
+    log = logging.getLogger("pymonalisa")
 
     current_year = datetime.now().year
     copyright_years = f"2025-{current_year}" if current_year > 2025 else "2025"
@@ -89,7 +88,6 @@ def main(version: bool) -> None:
 
 @main.command(name="license")
 @cloup.argument("license_data", type=str)
-@cloup.argument("device_path", type=cloup.Path(exists=True, path_type=Path))
 @cloup.option_group(
     "Key filtering options",
     cloup.option(
@@ -102,32 +100,21 @@ def main(version: bool) -> None:
 )
 def license_(
     license_data: str,
-    device_path: Path,
-    key_type: str | None,
+    key_type: str | None = None,
 ) -> None:
     """
     Process a MonaLisa encoded license and extract decryption keys.
 
     LICENSE_DATA: Base64 encoded MonaLisa license string
-    DEVICE_PATH: Path to MonaLisa device file (.json)
 
     Example:
-        pymonalisa license "AIUACgMAAAAAAAAAAAQChgACATADhwAnAgAg3UBbUdVCWXAjkgoUgmICmHvomvZai0jGglWe+oaQC+M..." device.json
+        pymonalisa license "AIUACgMAAAAAAAAAAAQChgACATADhwAnAgAg3UBbUdVCWXAjkgoUgmICmHvomvZai0jGglWe+oaQC+M..."
     """
     log = logging.getLogger("license")
 
-    # Validate inputs
-    if not device_path.is_file():
-        log.error(f"Module file not found: {device_path}")
-        return
-
     try:
-        log.info(f"Loading module: {device_path}")
-        module = Module.load(device_path)
-        log.info("Loaded module successfully")
-
         log.info("Initializing CDM...")
-        cdm = CDM.from_module(module)
+        cdm = CDM()
         log.info("CDM initialized successfully")
 
         log.info("Opening CDM session...")
@@ -161,8 +148,6 @@ def license_(
         cdm.close(session_id)
         log.info("Session closed successfully")
 
-    except MonalisaModuleError as e:
-        log.error(f"Module error: {e}")
     except MonalisaLicenseError as e:
         log.error(f"License error: {e}")
     except MonalisaSessionError as e:

@@ -10,12 +10,6 @@ class MonalisaLicenseError(MonalisaError):
     pass
 
 
-class MonalisaModuleError(MonalisaError):
-    """Exception raised for module/WASM module errors"""
-
-    pass
-
-
 class MonalisaSessionError(MonalisaError):
     """Exception raised for session management errors"""
 
